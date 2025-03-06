@@ -1,6 +1,8 @@
 package ru.normno.mysinglestatevsstatedataclass
 
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Patterns
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -25,4 +27,19 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+}
+
+@Composable
+fun RegisterScreenA(
+    email: String,
+    password: String,
+) {
+
+}
+
+@Composable
+fun RegisterScreenB(
+    state: MainState
+) {
+
 }
