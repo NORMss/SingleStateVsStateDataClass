@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 
 class ViewModelA : ViewModel() {
     private val _email = MutableStateFlow("")
@@ -48,6 +49,14 @@ class ViewModelA : ViewModel() {
         SharingStarted.WhileSubscribed(5000),
         false,
     )
+
+    fun updateEmail(email: String) {
+        _email.update { email }
+    }
+
+    fun updatePassword(password: String) {
+        _password.update { password }
+    }
 }
 
 fun String.isValidEmail() =
