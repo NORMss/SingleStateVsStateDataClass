@@ -29,7 +29,7 @@ class ViewModelA : ViewModel() {
             false,
         )
 
-    val isPasswordValid = email
+    val isPasswordValid = password
         .map {
             it.isValidPassword()
         }

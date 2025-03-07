@@ -29,30 +29,30 @@ class MainActivity : ComponentActivity() {
         setContent {
             MySingleStateVsStateDataClassTheme {
 
-                val viewModelA by viewModels<ViewModelA>()
-                RegisterScreenA(
-                    titleScreen = "Screen A",
-                    login = viewModelA.email.collectAsState().value,
-                    password = viewModelA.password.collectAsState().value,
-                    isLoginValid = viewModelA.isEmailValid.collectAsState().value,
-                    isPasswordValid = viewModelA.isPasswordValid.collectAsState().value,
-                    canRegister = viewModelA.canRegister.collectAsState().value,
-                    setLogin = viewModelA::updateEmail,
-                    setPassword = viewModelA::updatePassword,
-                )
-
-//                val viewModelB by viewModels<ViewModelB>()
-//                val state by viewModelB.state.collectAsState()
-//                RegisterScreenB(
-//                    titleScreen = "Screen B",
-//                    login = state.email,
-//                    password = state.password,
-//                    isLoginValid = state.isEmailValid,
-//                    isPasswordValid = state.isPasswordValid,
-//                    canRegister = state.canRegister,
-//                    setLogin = viewModelB::updateEmail,
-//                    setPassword = viewModelB::updatePassword,
+//                val viewModelA by viewModels<ViewModelA>()
+//                RegisterScreenA(
+//                    titleScreen = "Screen A",
+//                    login = viewModelA.email.collectAsState().value,
+//                    password = viewModelA.password.collectAsState().value,
+//                    isLoginValid = viewModelA.isEmailValid.collectAsState().value,
+//                    isPasswordValid = viewModelA.isPasswordValid.collectAsState().value,
+//                    canRegister = viewModelA.canRegister.collectAsState().value,
+//                    setLogin = viewModelA::updateEmail,
+//                    setPassword = viewModelA::updatePassword,
 //                )
+
+                val viewModelB by viewModels<ViewModelB>()
+                val state by viewModelB.state.collectAsState()
+                RegisterScreenB(
+                    titleScreen = "Screen B",
+                    login = state.email,
+                    password = state.password,
+                    isLoginValid = state.isEmailValid,
+                    isPasswordValid = state.isPasswordValid,
+                    canRegister = state.canRegister,
+                    setLogin = viewModelB::updateEmail,
+                    setPassword = viewModelB::updatePassword,
+                )
             }
         }
     }
@@ -163,7 +163,7 @@ fun InputCredential(
 
                 !isPasswordValid -> "Password is not valid"
 
-                !canRegister -> "You can be registered!"
+                canRegister -> "You can be registered!"
 
                 else -> ""
             },
